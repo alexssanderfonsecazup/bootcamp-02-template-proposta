@@ -2,7 +2,7 @@ package br.com.bootcamp.zup.proposta.compartilhado.client;
 
 
 import br.com.bootcamp.zup.proposta.proposta.nova.request.SolicitaoPropostaRequest;
-import br.com.bootcamp.zup.proposta.proposta.nova.response.SolicitacaoPropostaResponse;
+import br.com.bootcamp.zup.proposta.proposta.nova.response.SolicitacaoPropostaResponseClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface SolicitacaoClient {
 
     @PostMapping
-    SolicitacaoPropostaResponse consulta(SolicitaoPropostaRequest request);
+    SolicitacaoPropostaResponseClient consulta(SolicitaoPropostaRequest request);
 
 }

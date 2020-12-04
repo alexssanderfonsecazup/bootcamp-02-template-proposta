@@ -1,6 +1,6 @@
 package br.com.bootcamp.zup.proposta.proposta.nova.response;
 
-public class SolicitacaoPropostaResponse {
+public class SolicitacaoPropostaResponseClient {
 
     private String documento;
     private String nome;

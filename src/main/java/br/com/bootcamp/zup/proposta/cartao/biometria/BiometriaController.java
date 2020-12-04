@@ -1,6 +1,8 @@
 package br.com.bootcamp.zup.proposta.cartao.biometria;
 
-import br.com.bootcamp.zup.proposta.cartao.model.Cartao;
+import br.com.bootcamp.zup.proposta.cartao.Cartao;
+import br.com.bootcamp.zup.proposta.cartao.biometria.request.BiometriaRequest;
+import br.com.bootcamp.zup.proposta.cartao.biometria.response.BiometriaResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +28,8 @@ public class BiometriaController {
 
     @PostMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> cadastraBiometria(@PathVariable String id, @RequestBody @Valid BiometriaRequest biometriaRequest, UriComponentsBuilder uriBuilder) {
-        Cartao cartao = entityManager.find(Cartao.class, UUID.fromString(id));
+    public ResponseEntity<?> cadastraBiometria(@PathVariable UUID id, @RequestBody @Valid BiometriaRequest biometriaRequest, UriComponentsBuilder uriBuilder) {
+        Cartao cartao = entityManager.find(Cartao.class, id);
         if (cartao == null) {
          return ResponseEntity.notFound().build();
         }

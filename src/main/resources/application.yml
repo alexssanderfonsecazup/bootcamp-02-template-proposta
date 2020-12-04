@@ -27,6 +27,14 @@ spring:
           issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:18080/auth/realms/nosso-cartao}
           jwk-set-uri: ${KEYCLOAK_JWKS_URI:http://localhost:18080/auth/realms/nosso-cartao/protocol/openid-connect/certs}
 
+management:
+  endpoints:
+    web.exposure.include: info,health,prometheus
+    prometheus.enabled: true
+  metrics.tags:
+    aplicacao: ${nome_da_aplicacao:serviço de proposta}
+    ambiente: ${ambiente:desenvolvimento}
+
 
 
 feign:
@@ -38,7 +46,7 @@ feign:
 
 
 periodicidade:
-  busca-cartao: ${PERIODICIDADE_BUSCA_CARTAO:1000000000}
+  busca-cartao: ${PERIODICIDADE_BUSCA_CARTAO:1000}
 
 cartoes:
   host: ${CARTOES_URL:http://localhost:8888/api/cartoes}

@@ -2,12 +2,15 @@ package br.com.bootcamp.zup.proposta.proposta.nova.request;
 
 import br.com.bootcamp.zup.proposta.compartilhado.annotation.CpfOrCnpj;
 import br.com.bootcamp.zup.proposta.proposta.Proposta;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class NovaPropostaRequest {
 
     @NotBlank

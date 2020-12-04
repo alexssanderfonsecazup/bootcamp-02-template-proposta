@@ -1,7 +1,11 @@
-package br.com.bootcamp.zup.proposta.cartao.biometria;
+package br.com.bootcamp.zup.proposta.cartao.biometria.response;
+
+import br.com.bootcamp.zup.proposta.cartao.biometria.Biometria;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.time.LocalDateTime;
-
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BiometriaResponse {
     private String id;
     private LocalDateTime dataCriacao;

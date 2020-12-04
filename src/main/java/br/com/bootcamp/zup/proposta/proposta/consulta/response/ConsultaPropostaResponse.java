@@ -1,9 +1,12 @@
 package br.com.bootcamp.zup.proposta.proposta.consulta.response;
 
 import br.com.bootcamp.zup.proposta.proposta.Proposta;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.math.BigDecimal;
 
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ConsultaPropostaResponse {
 
     private String id;

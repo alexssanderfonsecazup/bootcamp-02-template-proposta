@@ -1,9 +1,9 @@
 package br.com.bootcamp.zup.proposta.cartao.associaCartao;
 
-import br.com.bootcamp.zup.proposta.cartao.associaCartao.response.CartaoResponse;
+import br.com.bootcamp.zup.proposta.cartao.associaCartao.response.CartaoClientResponse;
 import br.com.bootcamp.zup.proposta.compartilhado.client.CartaoClient;
 import br.com.bootcamp.zup.proposta.compartilhado.util.ExecutorTransacao;
-import br.com.bootcamp.zup.proposta.cartao.model.Cartao;
+import br.com.bootcamp.zup.proposta.cartao.Cartao;
 import br.com.bootcamp.zup.proposta.proposta.Proposta;
 import br.com.bootcamp.zup.proposta.proposta.PropostaRepository;
 import feign.FeignException;
@@ -43,8 +43,8 @@ public class AssociaNumeroCartaoSchedule {
 
     private void buscaESalvaCartao(Proposta proposta) {
         try {
-            CartaoResponse cartaoResponse = cartaoClient.verificaSeCartaoFoiCriado(proposta.getId().toString());
-            Cartao cartao = cartaoResponse.toModel();
+            CartaoClientResponse cartaoClientResponse = cartaoClient.verificaSeCartaoFoiCriado(proposta.getId().toString());
+            Cartao cartao = cartaoClientResponse.toModel();
             executorTransacao.salvaEComita(cartao);
 
             proposta.setNumeroCartao(cartao.getNumero());

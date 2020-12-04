@@ -23,8 +23,8 @@ public class ConsultaPropostaController {
     PropostaRepository propostaRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> consulta(@PathVariable String id){
-        Optional<Proposta> propostaOptional = propostaRepository.findById(UUID.fromString(id));
+    public ResponseEntity<?> consulta(@PathVariable UUID id){
+        Optional<Proposta> propostaOptional = propostaRepository.findById(id);
         propostaOptional.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Proposta não encontrada"));
         ConsultaPropostaResponse response = new ConsultaPropostaResponse(propostaOptional.get());
         return ResponseEntity.ok(response);

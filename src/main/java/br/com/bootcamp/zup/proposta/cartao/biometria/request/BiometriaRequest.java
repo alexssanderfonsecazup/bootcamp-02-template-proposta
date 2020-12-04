@@ -1,5 +1,6 @@
-package br.com.bootcamp.zup.proposta.cartao.biometria;
+package br.com.bootcamp.zup.proposta.cartao.biometria.request;
 
+import br.com.bootcamp.zup.proposta.cartao.biometria.Biometria;
 import br.com.bootcamp.zup.proposta.compartilhado.annotation.IsBase64;
 
 import javax.validation.constraints.NotBlank;
@@ -11,7 +12,6 @@ public class BiometriaRequest {
     @NotBlank
     @IsBase64
     private String fingerprint;
-
 
     public String getFingerprint() {
         return fingerprint;
