@@ -1,17 +1,17 @@
 package br.com.bootcamp.zup.proposta.compartilhado.client;
 
 
-import br.com.bootcamp.zup.proposta.proposta.nova.request.SolicitaoPropostaRequest;
+import br.com.bootcamp.zup.proposta.proposta.nova.request.SolicitaoPropostaClientRequest;
 import br.com.bootcamp.zup.proposta.proposta.nova.response.SolicitacaoPropostaResponseClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(url = "${solicitacao.host}",name = "solicitacao")
+@FeignClient(url = "${solicitacoes.host}",name = "solicitacao")
 @Component
 public interface SolicitacaoClient {
 
-    @PostMapping
-    SolicitacaoPropostaResponseClient consulta(SolicitaoPropostaRequest request);
+    @PostMapping("/")
+    SolicitacaoPropostaResponseClient consulta(SolicitaoPropostaClientRequest request);
 
 }

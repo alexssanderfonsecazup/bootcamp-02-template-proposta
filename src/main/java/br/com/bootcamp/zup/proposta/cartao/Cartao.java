@@ -2,6 +2,7 @@ package br.com.bootcamp.zup.proposta.cartao;
 
 import br.com.bootcamp.zup.proposta.cartao.biometria.Biometria;
 import br.com.bootcamp.zup.proposta.cartao.bloqueio.Bloqueio;
+import br.com.bootcamp.zup.proposta.cartao.carteiraDigital.CarteiraDigital;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -39,10 +40,13 @@ public class Cartao {
     @OneToMany
     private Set<Biometria> biometrias;
 
+    @OneToMany(mappedBy = "cartao")
+    private Set<CarteiraDigital> carteiras;
 
 
     @Deprecated
-    public Cartao(){}
+    public Cartao() {
+    }
 
 
     public Cartao(@NotBlank String numero, @NotNull LocalDateTime emitidoEm, @NotBlank String titular, @NotNull Integer limite) {
@@ -53,9 +57,13 @@ public class Cartao {
 
     }
 
+    public Boolean verificaAssociacaoCarteira(CarteiraDigital carteiraDigital) {
+        return carteiras.contains(carteiraDigital);
+    }
+
 
     public boolean temBloqueio() {
-        return bloqueio !=null;
+        return bloqueio != null;
     }
 
     public UUID getId() {
@@ -69,6 +77,7 @@ public class Cartao {
     public String getNumero() {
         return numero;
     }
+
     public void setBiometria(Set<Biometria> biometrias) {
         this.biometrias = biometrias;
     }
@@ -76,5 +85,6 @@ public class Cartao {
     public void setBloqueio(Bloqueio bloqueio) {
         this.bloqueio = bloqueio;
     }
+
 
 }

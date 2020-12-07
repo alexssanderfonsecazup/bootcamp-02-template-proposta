@@ -2,6 +2,8 @@ package br.com.bootcamp.zup.proposta.compartilhado.client;
 
 import br.com.bootcamp.zup.proposta.cartao.associaCartao.request.CriaCartaoClientRequest;
 import br.com.bootcamp.zup.proposta.cartao.associaCartao.response.CartaoClientResponse;
+import br.com.bootcamp.zup.proposta.cartao.carteiraDigital.AssociaCarteiraDigitalRequestClient;
+import br.com.bootcamp.zup.proposta.cartao.carteiraDigital.AssociacaoCarteiraDigitalResponseCliente;
 import br.com.bootcamp.zup.proposta.cartao.viagem.request.ViagemRequestClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.validation.annotation.Validated;
@@ -30,5 +32,9 @@ public interface CartaoClient {
 
     @PostMapping("/{idCartao}/avisos")
     void avisaViagem(@PathVariable String idCartao, @RequestBody ViagemRequestClient viagemRequestClient);
+
+    @PostMapping("/{idCartao}/carteiras")
+    AssociacaoCarteiraDigitalResponseCliente associaCarteiraDigital(@PathVariable String idCartao, @RequestBody AssociaCarteiraDigitalRequestClient associacaoCarteiraDigitalRequest);
+
 
 }

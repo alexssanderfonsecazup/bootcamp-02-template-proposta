@@ -2,6 +2,7 @@ package br.com.bootcamp.zup.proposta.proposta;
 
 import br.com.bootcamp.zup.proposta.compartilhado.annotation.CpfOrCnpj;
 import br.com.bootcamp.zup.proposta.proposta.nova.enumerate.StatusEnum;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -46,7 +47,11 @@ public class Proposta {
         this.nome = nome;
         this.endereco = endereco;
         this.salario = salario;
-        this.documento = documento;
+        this.documento = encriptaDocumento(documento);
+    }
+
+    public String encriptaDocumento(String documento){
+        return new BCryptPasswordEncoder().encode(documento);
     }
 
     public UUID getId() {

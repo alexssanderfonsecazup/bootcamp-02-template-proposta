@@ -3,10 +3,9 @@ package br.com.bootcamp.zup.proposta.proposta.nova;
 import br.com.bootcamp.zup.proposta.compartilhado.client.SolicitacaoClient;
 import br.com.bootcamp.zup.proposta.compartilhado.util.ExecutorTransacao;
 import br.com.bootcamp.zup.proposta.compartilhado.client.CartaoClient;
-import br.com.bootcamp.zup.proposta.cartao.associaCartao.request.CriaCartaoClientRequest;
 import br.com.bootcamp.zup.proposta.proposta.nova.enumerate.StatusEnum;
 import br.com.bootcamp.zup.proposta.proposta.nova.request.NovaPropostaRequest;
-import br.com.bootcamp.zup.proposta.proposta.nova.request.SolicitaoPropostaRequest;
+import br.com.bootcamp.zup.proposta.proposta.nova.request.SolicitaoPropostaClientRequest;
 import br.com.bootcamp.zup.proposta.proposta.nova.response.SolicitacaoPropostaResponseClient;
 import br.com.bootcamp.zup.proposta.proposta.nova.validator.DocumentoUnicoValidator;
 import br.com.bootcamp.zup.proposta.proposta.Proposta;
@@ -56,18 +55,18 @@ public class NovaPropostaController {
                 .buildAndExpand(proposta.getId())
                 .toUri();
         try {
-            SolicitacaoPropostaResponseClient responseSolicitacao = analiseClient.consulta(new SolicitaoPropostaRequest(proposta));
+            SolicitacaoPropostaResponseClient responseSolicitacao = analiseClient.consulta(new SolicitaoPropostaClientRequest(proposta));
             proposta.setStatus(StatusEnum.valueOfLabel(responseSolicitacao.getResultadoSolicitacao()));
             executorTransacao.atualizaEComita(proposta);
             logger.info("Proposta documento={} salário={} criada com sucesso !", proposta.getDocumento(), proposta.getSalario());
-            
+
         } catch (FeignException.UnprocessableEntity ex) {
             proposta.setStatus(StatusEnum.NAO_ELEGIVEL);
+            executorTransacao.atualizaEComita(proposta);
             logger.info("Proposta documento={} salário={} criada porém cliente não elegivel!", proposta.getDocumento(), proposta.getSalario());
-        }catch(FeignException e){
-            logger.error("Falha inesperada na api legado, status: {}, content: ", e.status(), e.contentUTF8());
 
         }
         return ResponseEntity.created(uri).build();
+
     }
 }

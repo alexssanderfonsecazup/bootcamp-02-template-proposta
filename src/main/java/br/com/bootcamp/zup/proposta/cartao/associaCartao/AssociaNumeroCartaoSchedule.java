@@ -32,7 +32,7 @@ public class AssociaNumeroCartaoSchedule {
 
 
     @Scheduled(fixedDelayString = "${periodicidade.busca-cartao}")
-    private void associaCartaoAProposta() {
+    protected void associaCartaoAProposta() {
         List<Proposta> propostasSemCartao = propostaRepository.findByNumeroCartaoIsNull();
         if (!propostasSemCartao.isEmpty()) {
             propostasSemCartao.forEach(proposta -> {
@@ -50,10 +50,10 @@ public class AssociaNumeroCartaoSchedule {
             proposta.setNumeroCartao(cartao.getNumero());
             executorTransacao.atualizaEComita(proposta);
 
-            logger.info("Associado o cartão {} para a proposta {}",cartao.getId(), proposta.getId());
+            logger.info("Associado o cartão {} para a proposta {}", cartao.getId(), proposta.getId());
 
         } catch (FeignException e) {
-            logger.info("Não foi encontrado um cartão disponível para a proposta {}",proposta.getId());
+            logger.info("Não foi encontrado um cartão disponível para a proposta {}", proposta.getId());
         }
     }
 
