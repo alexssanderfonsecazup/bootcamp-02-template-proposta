@@ -1,33 +1,26 @@
 package br.com.bootcamp.zup.proposta.proposta.consulta.response;
 
-import br.com.bootcamp.zup.proposta.proposta.Proposta;
+import br.com.bootcamp.zup.proposta.proposta.nova.enumerate.StatusEnum;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import java.math.BigDecimal;
+import java.util.UUID;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ConsultaPropostaResponse {
 
-    private String id;
+    private UUID id;
     private String nome;
-    private String endereco;
-    private BigDecimal salario;
-    private String documento;
-    private String status;
-    private String numeroCartao;
+    private StatusEnum status;
 
-    public ConsultaPropostaResponse(Proposta proposta) {
-        this.id = proposta.getId().toString();
-        this.nome = proposta.getNome();;
-        this.endereco = proposta.getEndereco();
-        this.salario = proposta.getSalario();
-        this.status = proposta.getStatus().toString();
-        this.numeroCartao = proposta.getNumeroCartao();
-        this.documento = proposta.getDocumento();
+
+    public ConsultaPropostaResponse(UUID id, String nome, StatusEnum status) {
+        this.id = id;
+        this.nome = nome;
+        this.status = status;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -35,23 +28,9 @@ public class ConsultaPropostaResponse {
         return nome;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public BigDecimal getSalario() {
-        return salario;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public String getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
+
 }

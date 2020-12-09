@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Validated
-@FeignClient(url = "http://localhost:8888/api/cartoes",name = "cartoes")
+@FeignClient(url = "${cartoes.host}",name = "cartoes")
 public interface CartaoClient {
 
 

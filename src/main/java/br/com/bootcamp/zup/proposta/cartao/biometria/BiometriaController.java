@@ -17,7 +17,7 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("cartoes/biometria")
+@RequestMapping("cartoes/{idCartao}/biometria")
 public class BiometriaController {
 
     @PersistenceContext
@@ -26,10 +26,10 @@ public class BiometriaController {
     private final Logger logger =  LoggerFactory.getLogger(BiometriaController.class);
 
 
-    @PostMapping("/{id}")
+    @PostMapping
     @Transactional
-    public ResponseEntity<?> cadastraBiometria(@PathVariable UUID id, @RequestBody @Valid BiometriaRequest biometriaRequest, UriComponentsBuilder uriBuilder) {
-        Cartao cartao = entityManager.find(Cartao.class, id);
+    public ResponseEntity<?> cadastraBiometria(@PathVariable UUID idCartao, @RequestBody @Valid BiometriaRequest biometriaRequest, UriComponentsBuilder uriBuilder) {
+        Cartao cartao = entityManager.find(Cartao.class, idCartao);
         if (cartao == null) {
          return ResponseEntity.notFound().build();
         }
@@ -46,9 +46,9 @@ public class BiometriaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> retornaBiometria(@PathVariable String id){
+    public ResponseEntity<?> retornaBiometria(@PathVariable UUID id){
 
-        Biometria biometria = entityManager.find(Biometria.class, UUID.fromString(id));
+        Biometria biometria = entityManager.find(Biometria.class, id);
         if (biometria == null) {
             return ResponseEntity.notFound().build();
         }

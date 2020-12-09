@@ -35,7 +35,7 @@ public class CarteiraDigitalController {
 
     private final Logger logger = LoggerFactory.getLogger(CarteiraDigitalController.class);
 
-    @PostMapping("/associaPaypal")
+    @PostMapping("/paypal")
     public ResponseEntity<?> associaCartaoComPaypal(@PathVariable UUID idCartao,
                                                     @RequestBody @Valid AssociacaoCartaoDigitalRequest associacaoCartaoDigitalRequest,
                                                     UriComponentsBuilder uriBuilder) {
@@ -67,7 +67,7 @@ public class CarteiraDigitalController {
     }
 
 
-    @PostMapping("/associaSamsung")
+    @PostMapping("/samsung")
     public ResponseEntity<?> associaCartaoComSamsung(@PathVariable UUID idCartao,
                                                     @RequestBody @Valid AssociacaoCartaoDigitalRequest associacaoCartaoDigitalRequest,
                                                     UriComponentsBuilder uriBuilder) {
@@ -78,9 +78,8 @@ public class CarteiraDigitalController {
         CarteiraDigital carteiraDigital = associacaoCartaoDigitalRequest.toModel("Samsung",cartao);
 
         if (cartao.verificaAssociacaoCarteira(carteiraDigital)) {
-            throw new ApiErroException("Está carteira samsung ja foi associada a este cartão", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new ApiErroException("Está carteira samsung já foi associada a este cartão", HttpStatus.UNPROCESSABLE_ENTITY);
         }
-
         try {
             AssociacaoCarteiraDigitalResponseCliente associacaoResponse = cartaoClient.associaCarteiraDigital(cartao.getNumero(),
                     new AssociaCarteiraDigitalRequestClient(carteiraDigital.getEmail(), carteiraDigital.getCarteira()));

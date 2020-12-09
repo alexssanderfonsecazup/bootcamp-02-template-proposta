@@ -1,6 +1,6 @@
 package br.com.bootcamp.zup.proposta.proposta;
 
-import br.com.bootcamp.zup.proposta.compartilhado.annotation.CpfOrCnpj;
+import br.com.bootcamp.zup.proposta.cartao.Cartao;
 import br.com.bootcamp.zup.proposta.proposta.nova.enumerate.StatusEnum;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -27,13 +27,13 @@ public class Proposta {
     @NotNull
     private BigDecimal salario;
 
-    @CpfOrCnpj
     private String documento;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
-    private String numeroCartao;
+    @OneToOne
+    private Cartao cartao;
 
     /**
      * Construtor default, deve ser usado
@@ -78,17 +78,15 @@ public class Proposta {
         return status;
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
+    public Cartao getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 
     public void setStatus(StatusEnum status) {
         this.status = status;
     }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-
 }
