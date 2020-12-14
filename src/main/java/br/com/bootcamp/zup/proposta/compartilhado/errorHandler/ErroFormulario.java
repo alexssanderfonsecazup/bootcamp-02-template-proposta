@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ErroFormulario {
 
-    private List<String> mensagens;
+    private final List<String> mensagens;
 
     public ErroFormulario(List<String> mensagens) {
         this.mensagens = mensagens;

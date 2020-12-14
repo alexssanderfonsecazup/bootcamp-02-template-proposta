@@ -34,6 +34,34 @@ services:
       POSTGRES_DB: keycloak
       POSTGRES_HOST: postgres
 
+
+  postgres_transacao:
+    image: 'postgres:alpine'
+    volumes:
+      - postgres-transacao-volume:/var/lib/postgresql/data
+
+    ports:
+      - 5532:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: transacao
+      POSTGRES_HOST: postgres
+
+  postgres_fatura:
+    image: 'postgres:alpine'
+    volumes:
+      - postgres-fatura-volume:/var/lib/postgresql/data
+
+    ports:
+      - 5533:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fatura
+      POSTGRES_HOST: postgres
+
+
   keycloak:
     image: jboss/keycloak
     ports:
@@ -80,7 +108,7 @@ services:
       SERVER_PORT: 8888
       LOG_LEVEL: INFO
       JAEGER_ENDPOINT: http://jaeger:14268/api/traces
-      
+
 
   transacoes:
     image: 'zupacademy/transacoes'
@@ -93,6 +121,7 @@ services:
       LOG_LEVEL: INFO
       KAFKA_HOST: "kafka:29092"
       JAEGER_ENDPOINT: http://jaeger:14268/api/traces
+      TRANSACTION_DELAY: 5000
 
   jaeger:
     image: jaegertracing/all-in-one
@@ -116,7 +145,7 @@ services:
     network_mode: bridge
     ports:
       - "9090:9090"
-      
+
   grafana:
     image: grafana/grafana
     volumes:
@@ -140,3 +169,5 @@ volumes:
   grafana-volume:
   prometheus-volume:
   postgres-volume:
+  postgres-transacao-volume:
+  postgres-fatura-volume:

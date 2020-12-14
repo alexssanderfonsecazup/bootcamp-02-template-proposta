@@ -50,6 +50,14 @@ public class Proposta {
         this.documento = encriptaDocumento(documento);
     }
 
+    public void setaStatusSeSeElegivel(String status){
+        if(status.equals("SEM_RESTRICAO")){
+            this.status = StatusEnum.ELEGIVEL_SEM_CARTAO;
+            return;
+        }
+        throw new  IllegalStateException("Status recebido inesperado");
+    }
+
     public String encriptaDocumento(String documento){
         return new BCryptPasswordEncoder().encode(documento);
     }
@@ -66,17 +74,10 @@ public class Proposta {
         return documento;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
     public BigDecimal getSalario() {
         return salario;
     }
 
-    public StatusEnum getStatus() {
-        return status;
-    }
 
     public Cartao getCartao() {
         return cartao;

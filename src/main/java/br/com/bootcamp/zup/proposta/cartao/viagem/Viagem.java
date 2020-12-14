@@ -24,11 +24,10 @@ public class Viagem {
 
 
     @NotNull
-    private Instant instanteAviso = Instant.now();
+    private final Instant instanteAviso = Instant.now();
 
     @NotBlank
     private String ipCliente;
-    ;
 
     @NotBlank
     private String userAgent;
