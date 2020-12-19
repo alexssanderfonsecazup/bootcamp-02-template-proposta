@@ -23,19 +23,4 @@ public class CriaCartaoClientRequest {
         this.nome = nome;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getIdProposta() {
-        return idProposta;
-    }
-
-    public void setIdProposta(String idProposta) {
-        this.idProposta = idProposta;
-    }
 }

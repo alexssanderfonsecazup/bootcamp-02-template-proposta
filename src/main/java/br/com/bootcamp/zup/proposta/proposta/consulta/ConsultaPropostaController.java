@@ -29,7 +29,6 @@ public class ConsultaPropostaController {
     @GetMapping("/{id}")
     public ResponseEntity<?> consulta(@PathVariable UUID id) {
 
-
         try {
             ConsultaPropostaResponse consulta = entityManager.createQuery("SELECT new  br.com.bootcamp.zup.proposta.proposta.consulta.response.ConsultaPropostaResponse" +
                     "(p.id, p.nome, p.status) FROM Proposta p WHERE p.id = :pId", ConsultaPropostaResponse.class).setParameter("pId", id)

@@ -9,15 +9,17 @@ import java.util.UUID;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ConsultaPropostaResponse {
 
-    private final UUID id;
-    private final String nome;
-    private final StatusEnum status;
+    private UUID id;
+    private String nome;
+    private StatusEnum status;
+    private String numero;
 
 
     public ConsultaPropostaResponse(UUID id, String nome, StatusEnum status) {
         this.id = id;
         this.nome = nome;
         this.status = status;
+
     }
 
     public UUID getId() {
