@@ -51,6 +51,7 @@ public class Proposta {
         this.documento = encriptaDocumento(documento);
     }
 
+<<<<<<< HEAD
     public void defineStatus(String status) {
         if (("SEM_RESTRICAO").equals(status)) {
             this.status = StatusEnum.ELEGIVEL_SEM_CARTAO;
@@ -63,6 +64,9 @@ public class Proposta {
     }
 
     public String encriptaDocumento(String documento) {
+=======
+    public String encriptaDocumento(String documento){
+>>>>>>> parent of 4f4f45c (Refatoracao job associacao e remocao imports nao usados)
         return new BCryptPasswordEncoder().encode(documento);
     }
 
@@ -78,10 +82,17 @@ public class Proposta {
         return documento;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
     public BigDecimal getSalario() {
         return salario;
     }
 
+    public StatusEnum getStatus() {
+        return status;
+    }
 
     public Cartao getCartao() {
         return cartao;

@@ -56,7 +56,11 @@ public class NovaPropostaController {
                 .toUri();
         try {
             Map<String,String> responseSolicitacao = analiseClient.consulta(new SolicitaoPropostaClientRequest(proposta));
+<<<<<<< HEAD
             proposta.defineStatus(responseSolicitacao.get("resultadoSolicitacao"));
+=======
+            proposta.setStatus(StatusEnum.valueOfLabel(responseSolicitacao.get("resultadoSolicitacao")));
+>>>>>>> parent of 4f4f45c (Refatoracao job associacao e remocao imports nao usados)
             executorTransacao.atualizaEComita(proposta);
             logger.info("Proposta ={} criada com sucesso para o cliente {} !", proposta.getId(), proposta.getNome());
 

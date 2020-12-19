@@ -4,9 +4,9 @@ import br.com.bootcamp.zup.proposta.proposta.Proposta;
 
 public class SolicitaoPropostaClientRequest {
 
-    private final String idProposta;
-    private final String documento;
-    private final String nome;
+    private String idProposta;
+    private String documento;
+    private String nome;
 
     public SolicitaoPropostaClientRequest(Proposta proposta){
         this.idProposta = proposta.getId().toString();

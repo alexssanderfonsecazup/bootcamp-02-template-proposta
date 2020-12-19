@@ -1,5 +1,6 @@
 package br.com.bootcamp.zup.proposta.proposta.consulta;
 
+import br.com.bootcamp.zup.proposta.proposta.Proposta;
 import br.com.bootcamp.zup.proposta.proposta.PropostaRepository;
 import br.com.bootcamp.zup.proposta.proposta.consulta.response.ConsultaPropostaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
