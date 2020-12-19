@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class ViagemController {
     @Autowired
     CartaoClient cartaoClient;
 
-    private final Logger logger = LoggerFactory.getLogger(ViagemController.class);
+    private Logger logger = LoggerFactory.getLogger(ViagemController.class);
 
     @PostMapping
     public ResponseEntity<?> avisarViagem(@PathVariable UUID id,

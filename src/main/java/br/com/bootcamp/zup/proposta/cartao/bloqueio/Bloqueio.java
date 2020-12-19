@@ -20,7 +20,7 @@ public class Bloqueio {
     private UUID id;
 
     @NotNull
-    private final LocalDateTime bloqueadoEm = LocalDateTime.now();
+    private LocalDateTime bloqueadoEm = LocalDateTime.now();
 
     @NotBlank
     private String ip;

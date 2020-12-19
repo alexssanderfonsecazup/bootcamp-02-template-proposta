@@ -33,7 +33,7 @@ public class BloqueioController {
     @PersistenceContext
     EntityManager entityManager;
 
-    private static final Logger logger = LoggerFactory.getLogger(BloqueioController.class);
+    private static Logger logger = LoggerFactory.getLogger(BloqueioController.class);
 
 
     @PostMapping
@@ -50,7 +50,7 @@ public class BloqueioController {
         executorTransacao.salvaEComita(bloqueio);
 
         try {
-            Map<String,String> map = Map.of("sistemaResponsavel", userAgent);
+            Map map = Map.of("sistemaResponsavel", userAgent);
             cartaoClient.bloquearCartao(cartao.getNumero(), map);
             logger.info("Cartao {} foi bloqueado com sucesso", cartao.getId());
 
