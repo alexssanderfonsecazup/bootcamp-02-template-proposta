@@ -56,7 +56,7 @@ public class NovaPropostaController {
                 .toUri();
         try {
             Map<String,String> responseSolicitacao = analiseClient.consulta(new SolicitaoPropostaClientRequest(proposta));
-            proposta.setaStatusSeSeElegivel(responseSolicitacao.get("resultadoSolicitacao"));
+            proposta.defineStatus(responseSolicitacao.get("resultadoSolicitacao"));
             executorTransacao.atualizaEComita(proposta);
             logger.info("Proposta ={} criada com sucesso para o cliente {} !", proposta.getId(), proposta.getNome());
 

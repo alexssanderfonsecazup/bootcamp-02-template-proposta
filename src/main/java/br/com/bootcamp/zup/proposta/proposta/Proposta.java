@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(name = "documento_unico", columnNames = {"documento"})})
+@Table(uniqueConstraints = {@UniqueConstraint(name = "documento_unico", columnNames = {"documento"})})
 public class Proposta {
 
     @Id
@@ -40,7 +40,8 @@ public class Proposta {
      * apenas pelo hibernate
      */
     @Deprecated
-    public Proposta(){}
+    public Proposta() {
+    }
 
     public Proposta(@NotBlank String nome, @NotBlank String endereco,
                     @NotNull BigDecimal salario, String documento) {
@@ -50,15 +51,18 @@ public class Proposta {
         this.documento = encriptaDocumento(documento);
     }
 
-    public void setaStatusSeSeElegivel(String status){
-        if(status.equals("SEM_RESTRICAO")){
+    public void defineStatus(String status) {
+        if (("SEM_RESTRICAO").equals(status)) {
             this.status = StatusEnum.ELEGIVEL_SEM_CARTAO;
             return;
+        } else if (("COM_RESTRICAO").equals(status)) {
+            this.status = StatusEnum.NAO_ELEGIVEL;
+            return;
         }
-        throw new  IllegalStateException("Status recebido inesperado");
+        throw new IllegalStateException("Status recebido inesperado");
     }
 
-    public String encriptaDocumento(String documento){
+    public String encriptaDocumento(String documento) {
         return new BCryptPasswordEncoder().encode(documento);
     }
 
@@ -81,6 +85,10 @@ public class Proposta {
 
     public Cartao getCartao() {
         return cartao;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
     }
 
     public void setCartao(Cartao cartao) {
