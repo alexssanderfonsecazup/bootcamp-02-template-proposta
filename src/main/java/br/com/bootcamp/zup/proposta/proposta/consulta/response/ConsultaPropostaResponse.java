@@ -12,10 +12,7 @@ public class ConsultaPropostaResponse {
     private UUID id;
     private String nome;
     private StatusEnum status;
-<<<<<<< HEAD
     private String numero;
-=======
->>>>>>> parent of 4f4f45c (Refatoracao job associacao e remocao imports nao usados)
 
 
     public ConsultaPropostaResponse(UUID id, String nome, StatusEnum status) {
