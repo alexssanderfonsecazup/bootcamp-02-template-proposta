@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.time.LocalDateTime;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BiometriaResponse {
-    private String id;
-    private LocalDateTime dataCriacao;
-    private String fingerprint;
+    private  String id;
+    private  LocalDateTime dataCriacao;
+    private  String fingerprint;
 
     public BiometriaResponse(Biometria biometria) {
         this.id = biometria.getId().toString();
@@ -20,7 +20,6 @@ public class BiometriaResponse {
     public String getId() {
         return id;
     }
-
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }

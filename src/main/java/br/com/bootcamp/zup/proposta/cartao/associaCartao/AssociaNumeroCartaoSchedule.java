@@ -12,7 +12,7 @@ public class AssociaNumeroCartaoSchedule {
 
     @Scheduled(fixedDelayString = "${periodicidade.busca-cartao}")
     protected void associaCartaoAProposta() {
-        buscaCartoesComponent.retornaListaDePropostasSemCartaoAssociado();
+        buscaCartoesComponent.associaCartao();
     }
 
 

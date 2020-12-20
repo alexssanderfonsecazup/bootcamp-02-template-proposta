@@ -11,10 +11,10 @@ import java.time.LocalDate;
 public class ViagemRequestClient {
 
     @NotBlank
-    private String destino;
+    private final String destino;
     @PastOrPresent @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate validoAte;
+    private final LocalDate validoAte;
 
     public ViagemRequestClient(@NotBlank String destino, @PastOrPresent @NotNull LocalDate validoAte) {
         this.destino = destino;

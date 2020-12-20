@@ -14,17 +14,17 @@ import java.math.BigDecimal;
 public class NovaPropostaRequest {
 
     @NotBlank
-    private String nome;
+    private final String nome;
 
     @NotBlank
-    private String endereco;
+    private final String endereco;
 
     @NotNull
     @PositiveOrZero
-    private BigDecimal salario;
+    private final BigDecimal salario;
 
     @CpfOrCnpj
-    private String documento;
+    private final String documento;
 
     public NovaPropostaRequest(@NotBlank String nome, @NotBlank String endereco,
                                @NotNull BigDecimal salario, String documento) {
